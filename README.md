@@ -9,4 +9,5 @@ Visualizations:
 - Gloria_SampleCountBySpecies_Viz_pdf
 - CulmenDepth.pdf
 - CulmenLength.pdf
+- PenguinSexPercentage.png
   
