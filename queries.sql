@@ -11,4 +11,26 @@ SELECT sex, COUNT(*) * 100.0 / (SELECT COUNT(*) FROM Samples) AS percentage
 FROM Samples
 GROUP BY sex;
 
--- hi
+-- Khaliun Tumenbayar
+-- 1. What is the average body mass of the most penguin populated Location?
+SELECT l.Region, l.Island, AVG(s.BodyMass) AS AvgBodyMass
+FROM Samples AS s
+JOIN Locations AS l ON s.LocationID = l.LocationID
+GROUP BY l.Region, l.Island
+HAVING COUNT(*) = (
+    SELECT COUNT(*) AS PenguinCount
+    FROM Samples
+    GROUP BY LocationID
+    ORDER BY COUNT(LocationID) DESC
+    LIMIT 1
+);
+
+-- Result: Anvers|Biscoe|4687.94642857143
+
+-- 2. Retrieve penguin sex with greater Culman length and depth
+SELECT Sex, MAX(CulmenLength) AS MaxCulmenLength, MAX(CulmenDepth) AS MaxCulmenDepth
+FROM Samples
+GROUP BY Sex;
+
+-- Result: FEMALE Penguin: Max Culmen Length: 58.0 | Max Culmen Depth: 20.7
+-- Result: MALE Penguin: Max Culmen Length: 59.6 | Max Culmen Depth: 21.5
