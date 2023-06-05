@@ -10,3 +10,5 @@ GROUP BY SpeciesName;
 SELECT sex, COUNT(*) * 100.0 / (SELECT COUNT(*) FROM Samples) AS percentage
 FROM Samples
 GROUP BY sex;
+
+-- hi
