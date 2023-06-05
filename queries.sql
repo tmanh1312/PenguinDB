@@ -1,18 +1,18 @@
-#Average FlipperLength of Samples for each species
+-- Jennifer
+-- 5. Average FlipperLength of Samples for each species
 
 SELECT SpeciesName, AVG(FlipperLength) AS FlipperLength
 FROM Samples
 JOIN Species ON Samples.SpeciesID = Species.SpeciesID
 GROUP BY SpeciesName;
 
-#Calculate the percentage of penguins for each sex:
-
+-- 6. Calculate the percentage of penguins for each sex:
 SELECT sex, COUNT(*) * 100.0 / (SELECT COUNT(*) FROM Samples) AS percentage
 FROM Samples
 GROUP BY sex;
 
 -- Khaliun Tumenbayar
--- 1. What is the average body mass of the most penguin populated Location?
+-- 7. What is the average body mass of the most penguin populated Location?
 SELECT l.Region, l.Island, AVG(s.BodyMass) AS AvgBodyMass
 FROM Samples AS s
 JOIN Locations AS l ON s.LocationID = l.LocationID
@@ -27,7 +27,7 @@ HAVING COUNT(*) = (
 
 -- Result: Anvers|Biscoe|4687.94642857143
 
--- 2. Retrieve penguin sex with greater Culman length and depth
+-- 8. What is the average Culmen length and depth for each penguin sex?
 SELECT Sex, MAX(CulmenLength) AS MaxCulmenLength, MAX(CulmenDepth) AS MaxCulmenDepth
 FROM Samples
 GROUP BY Sex;
